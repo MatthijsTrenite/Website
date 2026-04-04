@@ -1,0 +1,39 @@
+---
+import { getCollection } from 'astro:content';
+import ProjectRow from './ProjectRow.astro';
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<section class="mt-12">
+  <!-- Column headers (desktop) -->
+  <div class="hidden md:grid grid-cols-[1fr_1fr_auto_auto] gap-8 px-6 lg:px-12 pb-3 text-xs uppercase tracking-widest text-[var(--color-text-light)]">
+    <span>Project</span>
+    <span>Description</span>
+    <span>Category</span>
+    <span>Year</span>
+  </div>
+
+  <div class="border-t border-[var(--color-text)]/10">
+    {projects.map((project) => (
+      <ProjectRow
+        title={project.data.title}
+        description={project.data.description}
+        category={project.data.category}
+        year={project.data.year}
+        slug={project.id}
+        images={project.data.images}
+      />
+    ))}
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('[data-project-row]').forEach(row => {
+    row.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      if (target.closest('a')) return;
+      row.classList.toggle('is-open');
+    });
+  });
+</script>

@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #fdf0ed;
+  --color-text: #1a1a1a;
+  --color-text-light: #999;
+  --color-accent: #c4756e;
+  --color-surface: #d9d9d9;
+}
+
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('https://fonts.googleapis.com/css2?family=Instrument+Serif&display=swap');
+}
+
+html {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+/* Homepage project row expand/collapse */
+.thumbnail-strip {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s ease;
+}
+
+.is-open .thumbnail-strip {
+  grid-template-rows: 1fr;
+}
+
+.thumbnail-strip > div {
+  overflow: hidden;
+}
