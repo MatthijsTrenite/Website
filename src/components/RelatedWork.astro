@@ -1,0 +1,35 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+  slugs: string[];
+}
+
+const { slugs } = Astro.props;
+const allProjects = await getCollection('projects');
+const related = slugs
+  .map(slug => allProjects.find(p => p.id === slug))
+  .filter(Boolean);
+---
+
+{related.length > 0 && (
+  <section class="px-6 lg:px-12 py-16 border-t border-[var(--color-text)]/10">
+    <h2 class="font-['Instrument_Serif'] text-2xl mb-8">Related work</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {related.map((project) => project && (
+        <a href={`/projects/${project.id}`} class="group">
+          <div class="aspect-[3/2] rounded-lg overflow-hidden bg-[var(--color-surface)] mb-3">
+            <img
+              src={project.data.thumbnail}
+              alt={project.data.title}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+            />
+          </div>
+          <h3 class="font-medium group-hover:text-[var(--color-accent)] transition-colors">{project.data.title}</h3>
+          <p class="text-sm text-[var(--color-text-light)] mt-1">{project.data.description}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+)}

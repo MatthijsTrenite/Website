@@ -1,0 +1,62 @@
+---
+const currentPath = Astro.url.pathname;
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-[var(--color-bg)]/80">
+  <nav class="flex items-center justify-between px-6 lg:px-12 py-4">
+    <a href="/" class="font-['Instrument_Serif'] italic text-2xl tracking-tight hover:text-[var(--color-accent)] transition-colors">
+      Mt
+    </a>
+    <div class="hidden md:flex items-center gap-8 text-sm">
+      <a
+        href="/"
+        class:list={[
+          'transition-colors',
+          currentPath === '/' ? 'text-[var(--color-text)]' : 'text-[var(--color-text-light)] hover:text-[var(--color-text)]'
+        ]}
+      >
+        Work
+      </a>
+      <a
+        href="/about"
+        class:list={[
+          'transition-colors',
+          currentPath === '/about' ? 'text-[var(--color-text)]' : 'text-[var(--color-text-light)] hover:text-[var(--color-text)]'
+        ]}
+      >
+        About
+      </a>
+    </div>
+
+    <!-- Mobile menu button -->
+    <button
+      id="mobile-menu-btn"
+      class="md:hidden flex flex-col gap-1.5 p-2"
+      aria-label="Menu"
+    >
+      <span class="block w-5 h-px bg-[var(--color-text)] transition-transform" id="bar1"></span>
+      <span class="block w-5 h-px bg-[var(--color-text)] transition-opacity" id="bar2"></span>
+      <span class="block w-5 h-px bg-[var(--color-text)] transition-transform" id="bar3"></span>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden md:hidden px-6 pb-6">
+    <div class="flex flex-col gap-4 text-lg">
+      <a href="/" class="text-[var(--color-text)]">Work</a>
+      <a href="/about" class="text-[var(--color-text)]">About</a>
+    </div>
+  </div>
+</header>
+
+<!-- Spacer for fixed header -->
+<div class="h-16"></div>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+
+  btn?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+  });
+</script>

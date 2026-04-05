@@ -1,0 +1,37 @@
+---
+interface Props {
+  layout: 'full' | '2col' | '3col';
+  src?: string;
+  images?: string[];
+}
+
+const { layout, src, images } = Astro.props;
+---
+
+<div class="my-8">
+  {layout === 'full' && src && (
+    <div class="rounded-lg overflow-hidden bg-[var(--color-surface)]">
+      <img src={src} alt="" class="w-full" loading="lazy" />
+    </div>
+  )}
+
+  {layout === '2col' && images && (
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {images.map((img) => (
+        <div class="rounded-lg overflow-hidden bg-[var(--color-surface)]">
+          <img src={img} alt="" class="w-full" loading="lazy" />
+        </div>
+      ))}
+    </div>
+  )}
+
+  {layout === '3col' && images && (
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      {images.map((img) => (
+        <div class="rounded-lg overflow-hidden bg-[var(--color-surface)]">
+          <img src={img} alt="" class="w-full" loading="lazy" />
+        </div>
+      ))}
+    </div>
+  )}
+</div>

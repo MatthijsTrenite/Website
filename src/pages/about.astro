@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="About — Matthijs Nolst Trenité">
+  <section class="px-6 lg:px-12 py-16 max-w-5xl">
+    <h1 class="font-['Instrument_Serif'] text-4xl lg:text-5xl mb-12">About</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-[1fr_320px] gap-12 items-start">
+      <div class="space-y-6 text-[var(--color-text-light)] leading-relaxed text-lg">
+        <p>
+          I'm a multidisciplinary designer based in Amsterdam with a focus on branding
+          and bold, colorful visuals. I believe if you can't do something yet, you can
+          always learn it — which drives my continuous evolution and experimentation.
+        </p>
+        <p>
+          Currently working as a Designer/Art Director at Boomerang Agency, where I help
+          brands find their visual voice through strategic design thinking and creative execution.
+          With a Master of Science in Digital Design, I bring ideas to life from concept to
+          final delivery across brand identity, digital design, and art direction.
+        </p>
+      </div>
+
+      <div class="rounded-xl overflow-hidden bg-[var(--color-surface)]">
+        <img
+          src="/images/about/portrait.jpg"
+          alt="Matthijs Nolst Trenité"
+          class="w-full"
+        />
+      </div>
+    </div>
+
+    <div class="mt-20">
+      <h2 class="font-['Instrument_Serif'] text-2xl mb-8">More about me</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4 text-[var(--color-text-light)]">
+        <p>Based in Amsterdam, the Netherlands</p>
+        <p>MSc in Digital Design</p>
+        <p>Designer & Art Director at Boomerang Agency</p>
+        <p>Passionate about typography and photography</p>
+        <p>Shoots on a FUJI X100V</p>
+        <p>Plays football for Buitenveldert Zaterdag 2</p>
+        <p>Childhood idol: Del Piero</p>
+        <p>Claims the record for the largest football visual Pinterest board</p>
+      </div>
+    </div>
+
+    <div class="mt-16">
+      <div class="rounded-xl overflow-hidden bg-[var(--color-surface)] max-w-sm">
+        <img
+          src="/images/about/mini-matthijs.jpg"
+          alt="Mini Matthijs"
+          class="w-full"
+        />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

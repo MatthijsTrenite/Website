@@ -1,0 +1,27 @@
+---
+interface Props {
+  images: string[];
+  slug: string;
+}
+
+const { images, slug } = Astro.props;
+---
+
+<div class="thumbnail-strip">
+  <div>
+    <div class="flex gap-4 px-6 lg:px-12 pb-6 overflow-x-auto">
+      {images.map((src) => (
+        <a href={`/projects/${slug}`} class="flex-shrink-0">
+          <div class="w-48 h-32 lg:w-64 lg:h-40 rounded-lg overflow-hidden bg-[var(--color-surface)]">
+            <img
+              src={src}
+              alt=""
+              class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+            />
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+---
+import ThumbnailStrip from './ThumbnailStrip.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  category: string[];
+  year: number;
+  slug: string;
+  images?: string[];
+}
+
+const { title, description, category, year, slug, images } = Astro.props;
+---
+
+<div class="border-b border-[var(--color-text)]/10 cursor-pointer" data-project-row>
+  <div class="grid grid-cols-1 md:grid-cols-[1fr_1fr_auto_auto] gap-2 md:gap-8 items-baseline px-6 lg:px-12 py-5 hover:bg-[var(--color-text)]/[0.02] transition-colors">
+    <div>
+      <a href={`/projects/${slug}`} class="font-medium text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors">
+        {title}
+      </a>
+      <p class="text-sm italic text-[var(--color-text-light)] mt-0.5 md:hidden">{description}</p>
+    </div>
+    <p class="hidden md:block text-sm italic text-[var(--color-text-light)]">{description}</p>
+    <span class="hidden md:block text-sm text-[var(--color-accent)]">{category[0]}</span>
+    <span class="hidden md:block text-sm text-[var(--color-text-light)] tabular-nums">{year}</span>
+  </div>
+
+  {images && images.length > 0 && (
+    <ThumbnailStrip images={images} slug={slug} />
+  )}
+</div>

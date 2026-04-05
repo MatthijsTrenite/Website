@@ -1,0 +1,47 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import ProjectHero from '../components/ProjectHero.astro';
+import ProjectMeta from '../components/ProjectMeta.astro';
+import RelatedWork from '../components/RelatedWork.astro';
+
+interface Props {
+  title: string;
+  subtitle: string;
+  hero: string;
+  client: string;
+  year: number;
+  category: string[];
+  credits?: string[];
+  related?: string[];
+}
+
+const { title, subtitle, hero, client, year, category, credits, related } = Astro.props;
+---
+
+<BaseLayout title={`${title} — Matthijs Trenité`}>
+  <a
+    href="/"
+    class="inline-flex items-center gap-2 px-6 lg:px-12 pt-8 text-sm text-[var(--color-text-light)] hover:text-[var(--color-text)] transition-colors"
+  >
+    ← Back
+  </a>
+
+  <ProjectHero src={hero} alt={title} />
+
+  <div class="px-6 lg:px-12 py-12 max-w-6xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-12">
+      <div>
+        <h1 class="font-['Instrument_Serif'] text-4xl lg:text-5xl mb-6">{title}</h1>
+        <p class="text-lg text-[var(--color-text-light)] leading-relaxed mb-12">{subtitle}</p>
+        <div class="prose prose-lg max-w-none">
+          <slot />
+        </div>
+      </div>
+      <ProjectMeta client={client} year={year} category={category} credits={credits} />
+    </div>
+  </div>
+
+  {related && related.length > 0 && (
+    <RelatedWork slugs={related} />
+  )}
+</BaseLayout>
